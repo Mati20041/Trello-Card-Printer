@@ -1,5 +1,5 @@
 {
-  "name": "Trello Card Printer",
+  "name": "TrelloCardPrinter",
   "version": "0.1.0",
   "description": "Application for preparing trello cards to print on A4 paper.",
   "main": "app.jsx",
