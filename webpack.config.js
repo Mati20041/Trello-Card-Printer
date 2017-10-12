@@ -14,6 +14,11 @@ module.exports = {
     },
 
     resolve: {
+        modules: [
+            path.resolve('./frontend'),
+            path.resolve('./frontend/js'),
+            path.resolve('./node_modules')
+        ],
         extensions: ['.js', '.jsx']
     },
 
