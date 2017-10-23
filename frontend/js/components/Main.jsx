@@ -16,15 +16,16 @@ class Main extends React.Component {
 
 
     render() {
-        if(this.state.printCards) {
-            return (
-                <PrintCards printCards={this.state.printCards}/>
-            )
-        } if(this.state.columns && this.state.columns) {
+        if(this.state.columns && this.state.columns) {
             return (
                 <div>
                     <Header/>
                     <CardChoose cards={this.state.cards}  columns={this.state.columns} setChoosenCards={this.setChoosenCards}/>
+                    {
+                        this.state.printCards ?
+                        <PrintCards onClosing={this.popoutClosed} printCards={this.state.printCards}/>
+                        : null
+                    }
                 </div>
             )
         } else {
@@ -37,12 +38,15 @@ class Main extends React.Component {
         }
     }
 
+    popoutClosed = () => {
+        this.setState({...this.state, printCards: null});
+    };
+
     setCardsAndColumns = (cards, columns) =>  {
         this.setState({...this.state, cards:cards, columns:columns})
     };
 
     setChoosenCards = (choosenCards) => {
-        // this.setState({...this.state, printCards: });
         this.setState({...this.state, printCards: choosenCards});
     };
 }

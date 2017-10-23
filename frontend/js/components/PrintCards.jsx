@@ -1,4 +1,5 @@
 import * as React from "react";
+import Popout from 'react-popout';
 import Card from "./Card";
 
 class PrintCards extends React.Component {
@@ -17,12 +18,23 @@ class PrintCards extends React.Component {
             }
         });
 
+        const css = window.location.origin + '/bundle.css';
         return (
-            <table style={{width: '100%'}} className="card-table">
-                {cardsTuples.map((u) => {
-                    return <tr>{u[0]}{u[1]}</tr>
-                })}
-            </table>
+            <Popout
+                title='Trello Cards To Print'
+                containerId="main"
+                url="about:blank"
+                onClosing={this.props.onClosing}
+                options={{width:'1700px', height:'700px'}}>
+                <div>
+                    <link rel="stylesheet" href={css}/>
+                    <table style={{width: '100%'}} className="card-table">
+                        {cardsTuples.map((u) => {
+                            return <tr>{u[0]}{u[1]}</tr>
+                        })}
+                    </table>
+                </div>
+            </Popout>
         );
     }
 }
