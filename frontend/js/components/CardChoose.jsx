@@ -8,15 +8,15 @@ class CardChoose extends React.Component {
         super(props);
         const givenState = props.history.location.state;
         this.state = {
-            columns: givenState.columns,
-            cards: givenState.cards,
+            columns: givenState ? givenState.columns : [],
+            cards: givenState ? givenState.cards : [],
             chosenCards: []
         };
     }
 
     render() {
         const columns = this.state.columns;
-        const maxCardsLengthStream = [...Array(Math.max(...Object.values(columns).map((v)=> v.cards.length)))];
+        const maxCardsLengthStream = CardChoose.calculateMaxColumnsLengthStream(columns);
         return (
             <div className="container">
                 <form onSubmit={this.submitCards}>
@@ -42,6 +42,10 @@ class CardChoose extends React.Component {
                 }
             </div>
         );
+    }
+
+    static calculateMaxColumnsLengthStream(columns) {
+        return [...new Array(Math.max(...Object.values(columns).map((v) => v.cards.length), 0))];
     }
 
     setChoosenCards = (choosenCards) => {
