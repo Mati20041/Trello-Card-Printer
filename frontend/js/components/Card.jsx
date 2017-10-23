@@ -6,10 +6,6 @@ class Card extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-        this.getUsers();
-    };
-
     render() {
         return (
                 <div className="card">
