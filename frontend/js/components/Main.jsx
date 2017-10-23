@@ -21,7 +21,7 @@ class Main extends React.Component {
                 <div className="container">
                     <Router basename={BUILDARGS.BASENAME}>
                         <div className="routers">
-                            <Route path="/" component={InputTrello}/>
+                            <Route exact path="/" component={InputTrello}/>
                             <Route path="/selectCards" component={CardChoose}/>
                         </div>
                     </Router>
