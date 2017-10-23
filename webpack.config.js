@@ -2,6 +2,7 @@ const path = require("path");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
 
@@ -56,6 +57,11 @@ module.exports = {
     },
 
     plugins: [
+        new webpack.DefinePlugin({
+            'BUILDARGS' : {
+                'BASENAME': JSON.stringify(process.env.BASENAME || '')
+            }
+        }),
         new ExtractTextPlugin("bundle.css"),
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.css$/g,

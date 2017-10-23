@@ -10,7 +10,7 @@ class Main extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {};
+
     }
 
 
@@ -19,9 +19,9 @@ class Main extends React.Component {
             <div>
                 <Header/>
                 <div className="container">
-                    <Router>
+                    <Router basename={BUILDARGS.BASENAME}>
                         <div className="routers">
-                            <Route exact path="/" component={InputTrello}/>
+                            <Route path="/" component={InputTrello}/>
                             <Route path="/selectCards" component={CardChoose}/>
                         </div>
                     </Router>
