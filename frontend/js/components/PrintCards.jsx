@@ -18,7 +18,7 @@ class PrintCards extends React.Component {
             }
         });
 
-        const css = window.location.origin + '/bundle.css';
+        const css = this.getCssUrl();
         return (
             <Popout
                 title='Trello Cards To Print'
@@ -36,6 +36,11 @@ class PrintCards extends React.Component {
                 </div>
             </Popout>
         );
+    }
+
+    getCssUrl() {
+        const basename = BUILDARGS.BASENAME === '' ? '' : '/' + BUILDARGS.BASENAME;
+        return window.location.origin + basename + '/bundle.css';
     }
 }
 
