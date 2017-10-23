@@ -1,10 +1,9 @@
 import React from 'react';
 import 'css/main.scss';
 import 'libs/bootstrap/css/bootstrap.min.css';
-import {Button, ControlLabel, FormControl, FormGroup} from "react-bootstrap";
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import InputTrello from "./InputTrello";
 import CardChoose from "./CardChoose";
-import PrintCards from "./PrintCards";
 import Header from "./Header";
 
 class Main extends React.Component {
@@ -16,39 +15,18 @@ class Main extends React.Component {
 
 
     render() {
-        if(this.state.columns && this.state.columns) {
-            return (
-                <div>
-                    <Header/>
-                    <CardChoose cards={this.state.cards}  columns={this.state.columns} setChoosenCards={this.setChoosenCards}/>
-                    {
-                        this.state.printCards ?
-                        <PrintCards onClosing={this.popoutClosed} printCards={this.state.printCards}/>
-                        : null
-                    }
-                </div>
-            )
-        } else {
-            return (
-                <div>
-                    <Header/>
-                    <InputTrello prefix="ALCH-" setCardsAndColumns={this.setCardsAndColumns}/>
-                </div>
-            );
-        }
+        return (
+            <div>
+                <Header/>
+                <Router>
+                    <div className="routes">
+                        <Route exact path="/" component={InputTrello}/>
+                        <Route path="/selectCards" component={CardChoose}/>
+                    </div>
+                </Router>
+            </div>
+        );
     }
-
-    popoutClosed = () => {
-        this.setState({...this.state, printCards: null});
-    };
-
-    setCardsAndColumns = (cards, columns) =>  {
-        this.setState({...this.state, cards:cards, columns:columns})
-    };
-
-    setChoosenCards = (choosenCards) => {
-        this.setState({...this.state, printCards: choosenCards});
-    };
 }
 
 export default Main;

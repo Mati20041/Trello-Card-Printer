@@ -18,8 +18,13 @@ class InputTrello extends React.Component {
         )
     }
 
+    setCardsAndColumns = (cards, columns) => {
+        this.props.history.push('/selectCards', {cards:cards, columns:columns});
+    };
+
     parseTrelloJson = (e) =>  {
         e.preventDefault();
+        const prefix = 'ALCH-';
         const form = e.target;
         const parsedTrello = JSON.parse(form.elements['trelloJson'].value);
         const columns = parsedTrello.lists.reduce((obj, l) => {obj[l.id] = {name: l.name, cards: []}; return obj;},{});
@@ -30,11 +35,11 @@ class InputTrello extends React.Component {
                 title: e.name,
                 subtitle: e.labels.length > 0 ? e.labels[0].name : 'No Label',
                 color: e.labels.length > 0 ? e.labels[0].color : 'gray',
-                prefix: this.props.prefix
+                prefix: prefix
             }
         });
         cards.forEach((c) =>{columns[c.listId].cards.push(c)});
-        this.props.setCardsAndColumns(cards, columns);
+        this.setCardsAndColumns(cards, columns);
     };
 }
 

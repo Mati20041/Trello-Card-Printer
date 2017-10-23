@@ -1,13 +1,15 @@
 import * as React from "react";
 import {Button, Checkbox, Table} from "react-bootstrap";
+import PrintCards from "./PrintCards";
 
 class CardChoose extends React.Component {
 
     constructor(props) {
         super(props);
+        const givenState = props.history.location.state;
         this.state = {
-            columns: props.columns,
-            cards: props.cards,
+            columns: givenState.columns,
+            cards: givenState.cards,
             chosenCards: []
         };
     }
@@ -19,10 +21,12 @@ class CardChoose extends React.Component {
             <div className="container">
                 <form onSubmit={this.submitCards}>
                         <Table bordered hover style={{width: '100%', columnCount: 2, overflow: 'auto'}}>
-                            <tbody>
+                            <thead>
                                 <tr>
                                     {Object.entries(columns).map(([key, val]) => {return <th key={key} onClick={(e) => this.setColumn(!this.areAllColumnCardsSet(key), key)}>{val.name}<Checkbox className="pull-right" checked={this.areAllColumnCardsSet(key)} onChange={(e) => this.setColumn(e.target.checked, key)}/></th>})}
                                 </tr>
+                            </thead>
+                            <tbody>
                                 {maxCardsLengthStream.map((e, index) => {return <tr key={index}>{Object.values(columns).map((c) => {
                                     const cardId = index < c.cards.length ? c.cards[index].id : NaN;
                                     return index < c.cards.length ? <td onClick={(e) => this.setCard(!this.state.chosenCards[cardId], cardId)}>{c.cards[index].title}<Checkbox className="pull-right" checked={this.state.chosenCards[c.cards[index].id]} onChange={(e) => this.setCard(e.target.checked, c.cards[index].id)}/></td> : <td/>})}</tr>})
@@ -31,13 +35,22 @@ class CardChoose extends React.Component {
                         </Table>
                     <Button bsStyle="primary" bsSize="large" type="submit">Submit</Button>
                 </form>
+                {
+                    this.state.printCards ?
+                        <PrintCards onClosing={this.popoutClosed} printCards={this.state.printCards}/>
+                    : null
+                }
             </div>
         );
     }
 
+    setChoosenCards = (choosenCards) => {
+        this.setState({...this.state, printCards: choosenCards});
+    };
+
     submitCards = (e) => {
         e.preventDefault();
-        this.props.setChoosenCards(this.state.cards.filter((c) => this.state.chosenCards[c.id]));
+        this.setChoosenCards(this.state.cards.filter((c) => this.state.chosenCards[c.id]));
     };
 
     setCard(val, id) {
@@ -61,7 +74,11 @@ class CardChoose extends React.Component {
             }
         }
         return true;
-    }
+    };
+
+    popoutClosed = () => {
+        this.setState({...this.state, printCards: null});
+    };
 }
 
 export default CardChoose;
