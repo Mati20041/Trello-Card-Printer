@@ -22,7 +22,7 @@ class InputTrello extends React.Component {
                     </FormGroup>
                     <FormGroup>
                         <ControlLabel>Card Prefix</ControlLabel>
-                        <FormControl type="text" id="prefixField" name="prefix" placeholder="PREFIX-" value={this.state.prefix}/>
+                        <FormControl type="text" id="prefixField" name="prefix" placeholder="PREFIX-" defaultValue={this.state.prefix}/>
                     </FormGroup>
                     <Button bsStyle="primary" bsSize="large" type="submit">Generate</Button>
                 </form>
