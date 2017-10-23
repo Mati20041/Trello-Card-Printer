@@ -18,12 +18,15 @@ class Main extends React.Component {
         return (
             <div>
                 <Header/>
-                <Router>
-                    <div className="routes">
-                        <Route exact path="/" component={InputTrello}/>
-                        <Route path="/selectCards" component={CardChoose}/>
-                    </div>
-                </Router>
+                <div className="container">
+                    <Router>
+                        <div className="routers">
+                            <Route exact path="/" component={InputTrello}/>
+                            <Route path="/selectCards" component={CardChoose}/>
+                        </div>
+                    </Router>
+                    <p>This site uses cookies to store your prefix preference ;)</p>
+                </div>
             </div>
         );
     }

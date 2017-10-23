@@ -18,7 +18,7 @@ class CardChoose extends React.Component {
         const columns = this.state.columns;
         const maxCardsLengthStream = CardChoose.calculateMaxColumnsLengthStream(columns);
         return (
-            <div className="container">
+            <div>
                 <form onSubmit={this.submitCards}>
                         <Table bordered hover style={{width: '100%', columnCount: 2, overflow: 'auto'}}>
                             <thead>
