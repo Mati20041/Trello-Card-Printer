@@ -28,7 +28,7 @@ class PrintCards extends React.Component {
                 options={{width:'1700px', height:'700px'}}>
                 <div>
                     <link rel="stylesheet" href={css}/>
-                    <table style={{width: '100%'}} className="card-table">
+                    <table className="card-table">
                         {cardsTuples.map((u) => {
                             return <tr>{u[0]}{u[1]}</tr>
                         })}
