@@ -1,24 +1,21 @@
 .card {
   box-shadow: 0 8px 25px 0 rgba(0,0,0,0.2);
   -webkit-box-shadow: 0 8px 25px 0 rgba(0,0,0,0.2);
-  width: 800px;
-  height: 500px;
   -webkit-print-color-adjust: exact;
   -webkit-filter:opacity(1);
   color-adjust: exact;
-  margin: 50px auto 50px;
 }
 
 .card-title {
   font-family: "Lucida Console", Lucida, monospace;
-  font-size: 3.5em;
+  font-size: 1.5em;
   padding: 36px;
   background: #fdfdfd;
-  height: 430px;
+  height: 180px;
 }
 
 .card-subtitle {
-  font-size: 3em;
+  font-size: 2em;
   background: dodgerblue;
   height: 70px;
   width: 100%;
@@ -36,14 +33,14 @@
   text-align: right;
   min-width: 1.5em;
   font-size: 2.5em;
-  position: relative;
+  position: absolute;
   float: right;
   display: inline-block;
   background: #d4f3e8;
   border-radius: 25px;
   padding: 5px;
-  bottom: 100px;
-  right: 70px;
+  bottom: 65px;
+  right: 40px;
 }
 
 .grid {
@@ -54,13 +51,15 @@
 }
 
 .card-table {
-  border-collapse: separate;
+  width: 1000px;
 }
 
 .card-table-item {
-  border: 3px dashed black;
+  border: 1px dashed #cccccc;
   vertical-align:middle !important;
-  height:90px;
+  width: 500px;
+  position: relative;
+  padding: 20px 20px;
 }
 
 @media print {
@@ -70,11 +69,8 @@
   .card {
     box-shadow: 0 8px 25px 0 rgba(0,0,0,0.2);
     -webkit-box-shadow: 0 8px 25px 0 rgba(0,0,0,0.2);
-    width: 800px;
-    height: 500px;
     -webkit-print-color-adjust: exact !important;
     -webkit-filter: drop-shadow(0 8px 25px #ccc);
     color-adjust: exact;
-    margin: 50px 50px 50px;
   }
 }
